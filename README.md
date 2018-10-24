@@ -32,8 +32,11 @@ root@bastion:~#
 *. Для решения домашнего задания использована команда в одну строку для подключения к хосту someinternalhost через хост bastion.
 [belogrud@admingate ~]$ ssh -t -A belogrud@bastion "( ssh belogrud@someinternalhost )"
 *. Установлен, настроен pritunl.
-bastion_IP = 35.234.125.254
-someinternalhost_IP = 10.156.0.3
+bastion_IP =
+35.234.125.254
+someinternalhost_IP =
+10.156.0.3
+
 *. В ветку репозитория cloud-bastion помещены файлы setupvpn.sh, cloud-bastion.ovpn.
 
 # Как проверить.
