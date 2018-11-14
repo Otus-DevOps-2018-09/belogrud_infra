@@ -72,3 +72,17 @@ resource "google_compute_firewall" "firewall_puma" {
   # Правило применимо для инстансов с перечисленными тэгами
   target_tags = ["reddit-app"]
 }
+
+resource "google_compute_firewall" "firewall_ssh" {
+  name = "allow-puma-ssh"
+  # Название сети, в которой действует правило
+  network = "default"
+  # Какой доступ разрешить
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+  # Каким адресам разрешаем доступ
+  source_ranges = ["0.0.0.0/0"]
+}
+
