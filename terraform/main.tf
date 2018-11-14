@@ -30,7 +30,8 @@ resource "google_compute_instance" "app" {
 
   metadata {
     # ssh-keys = "appuser:${file("${var.public_key_path}")}"
-    ssh-keys = "appuser:${file("~/.ssh/id_rsa_appuser.pub")}"
+    # ssh-keys = "appuser:${file("~/.ssh/id_rsa_appuser.pub")}"
+    ssh-keys = "appuser:${file("~/.ssh/appuser.pub")}"
   }
 
   tags = ["reddit-app"]
@@ -39,7 +40,8 @@ resource "google_compute_instance" "app" {
     type        = "ssh"
     user        = "appuser"
     agent       = false
-    private_key = "${file("~/.ssh/id_rsa_appuser")}"
+    # private_key = "${file("~/.ssh/id_rsa_appuser")}"
+    private_key = "${file("~/.ssh/appuser")}"
   }
 
   provisioner "file" {
