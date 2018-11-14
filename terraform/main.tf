@@ -55,7 +55,7 @@ resource "google_compute_instance" "app" {
 }
 
 resource "google_compute_firewall" "firewall_puma" {
-  name = "allow-allow-default"
+  name = "allow-puma-default"
 
   # Название сети, в которой действует правило
   network = "default"
