@@ -74,7 +74,7 @@ resource "google_compute_firewall" "firewall_puma" {
 }
 
 resource "google_compute_firewall" "firewall_ssh" {
-  name = "allow-default-ssh"
+  name = "default-allow-ssh"
   # Название сети, в которой действует правило
   network = "default"
   # Какой доступ разрешить
