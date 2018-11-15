@@ -16,3 +16,7 @@ variable region {
 #	disk_image = "reddit-base"
 #}
 
+variable app_disk_image {
+	description = "Disk image for reddit app"
+	default = "reddit-app-base"
+}
