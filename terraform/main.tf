@@ -1,8 +1,6 @@
 provider "google" {
   version = "1.4.0"
-
-  # project = "${var.project}"
-  project = "infra-219815"
+  project = "${var.project}"
   region  = "${var.region}"
 }
 
@@ -14,8 +12,7 @@ resource "google_compute_instance" "app" {
   # определение загрузочного диска
   boot_disk {
     initialize_params {
-      # image = "${var.disk_image}"
-      image = "reddit-base"
+      image = "${var.disk_image}"
     }
   }
 
@@ -26,14 +23,12 @@ resource "google_compute_instance" "app" {
 
     # использовать ephemeral IP для доступа из Интернет
     access_config {
-		nat_ip = "${google_compute_address.app_ip.address}"
-	}
+      nat_ip = "${google_compute_address.app_ip.address}"
+    }
   }
 
   metadata {
-    # ssh-keys = "appuser:${file("${var.public_key_path}")}"
-    # ssh-keys = "appuser:${file("~/.ssh/id_rsa_appuser.pub")}"
-    ssh-keys = "appuser:${file("~/.ssh/appuser.pub")}"
+    ssh-keys = "appuser:${file("${var.public_key_path}")}"
   }
 
   tags = ["reddit-app"]
@@ -42,8 +37,7 @@ resource "google_compute_instance" "app" {
     type        = "ssh"
     user        = "appuser"
     agent       = false
-    # private_key = "${file("~/.ssh/id_rsa_appuser")}"
-    private_key = "${file("~/.ssh/appuser")}"
+    private_key = "${file("${var.private_key_path}")}"
   }
 
   provisioner "file" {
@@ -76,20 +70,22 @@ resource "google_compute_firewall" "firewall_puma" {
 }
 
 resource "google_compute_firewall" "firewall_ssh" {
-  name = "default-allow-ssh"
+  name        = "default-allow-ssh"
   description = "Allow SSH from anywhere"
+
   # Название сети, в которой действует правило
   network = "default"
+
   # Какой доступ разрешить
   allow {
     protocol = "tcp"
     ports    = ["22"]
   }
+
   # Каким адресам разрешаем доступ
   source_ranges = ["0.0.0.0/0"]
 }
 
 resource "google_compute_address" "app_ip" {
-	name = "reddit-app-ip"
+  name = "reddit-app-ip"
 }
-
