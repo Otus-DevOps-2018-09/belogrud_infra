@@ -1,6 +1,19 @@
 # belogrud_infra
 # belogrud Infra repository
 
+
+# 20181122
+# Lesson 11
+#
+# Домашнее задание к уроку 11: "Продолжение знакомства с Ansible: templates, handlers, dynamic inventory, vault, tags".
+# Работа выполнялась по методичке “Практика._Расширенные_возможности_Ansible-22859-ecf178.pdf”.
+# 
+# Что сделано.
+#
+# *. Созданы группы файлов плейбуков ansible.
+#
+
+
 # 20181120
 # Lesson 10
 #
